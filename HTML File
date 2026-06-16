@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jacob Johnson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0f0e0c;--ink2:#3a3835;--ink3:#7a7874;--paper:#f9f7f3;--paper2:#f0ede6;--paper3:#e8e3d9;--gold:#b8860b;--gold-light:#f0d98a;--accent:#1a3a2a}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);font-size:16px;line-height:1.6;overflow-x:hidden}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3rem;background:rgba(249,247,243,0.93);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,0.06)}
+.nav-logo{font-family:'Playfair Display',serif;font-weight:700;font-size:1.1rem;color:var(--ink);text-decoration:none}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-size:.82rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+
+.hero{display:grid;grid-template-columns:1fr 1fr;align-items:center;min-height:100vh;padding:80px 3rem 0;gap:4rem}
+.hero-eyebrow{display:inline-block;font-size:.75rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;border-bottom:1px solid var(--gold-light);padding-bottom:.3rem}
+.hero-name{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,6vw,5.5rem);font-weight:900;line-height:1.0;letter-spacing:-.02em;margin-bottom:1.5rem}
+.hero-name em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:1.05rem;font-weight:300;color:var(--ink2);max-width:460px;line-height:1.75;margin-bottom:2.5rem}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{display:inline-block;padding:.75rem 1.75rem;font-size:.85rem;font-weight:500;letter-spacing:.05em;text-decoration:none;border-radius:3px;transition:all .2s;cursor:pointer;border:none;font-family:'DM Sans',sans-serif}
+.btn-primary{background:var(--ink);color:var(--paper)}
+.btn-primary:hover{background:var(--ink2)}
+.btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.btn-outline:hover{background:var(--paper3)}
+
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.stat-card{background:var(--paper2);border:1px solid var(--paper3);border-radius:8px;padding:1.5rem}
+.stat-card.dark{background:var(--accent);border-color:var(--accent);color:#e8f0eb}
+.stat-card.dark .stat-label{color:#9bbfa9}
+.stat-number{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;line-height:1.1;margin-bottom:.3rem}
+.stat-label{font-size:.78rem;font-weight:400;color:var(--ink3);letter-spacing:.04em}
+.hero-tagline{background:var(--gold);border-radius:8px;padding:1.2rem 1.5rem;font-size:.9rem;font-weight:300;color:#2a1f00;font-style:italic;line-height:1.6}
+
+section{padding:7rem 3rem}
+.section-label{display:flex;align-items:center;gap:.8rem;margin-bottom:3.5rem}
+.section-label span{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink3);font-weight:500}
+.section-label::after{content:'';flex:1;height:1px;background:var(--paper3)}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:700;line-height:1.2;margin-bottom:2.5rem}
+.section-title em{font-style:italic;color:var(--gold)}
+
+.about{background:var(--paper2)}
+.about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:6rem;align-items:start}
+.about-text p{font-size:1.05rem;font-weight:300;line-height:1.85;color:var(--ink2);margin-bottom:1.3rem}
+.about-text strong{font-weight:500;color:var(--ink)}
+.skills-list{display:flex;flex-direction:column;gap:1.2rem}
+.skill-name{font-size:.8rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.5rem;color:var(--ink2)}
+.skill-bar{height:2px;background:var(--paper3);border-radius:2px}
+.skill-fill{height:2px;background:var(--gold);border-radius:2px}
+
+.work-item{display:grid;grid-template-columns:220px 1fr;gap:4rem;padding:3rem 0;border-top:1px solid var(--paper3);align-items:start}
+.work-item:last-child{border-bottom:1px solid var(--paper3)}
+.work-company{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin-bottom:.3rem}
+.work-period{font-size:.78rem;color:var(--ink3);letter-spacing:.05em}
+.work-role{font-size:.78rem;font-weight:500;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem}
+.work-p{font-size:.93rem;font-weight:300;color:var(--ink2);line-height:1.8;margin-bottom:.8rem}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem}
+.tag{font-size:.72rem;background:var(--paper2);border:1px solid var(--paper3);border-radius:30px;padding:.25rem .7rem;color:var(--ink2)}
+.tag.hi{background:rgba(184,134,11,.12);border-color:rgba(184,134,11,.35);color:var(--gold);font-weight:500}
+
+.videos{background:var(--paper2)}
+.videos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.vid-card{background:var(--paper);border:1px solid var(--paper3);border-radius:8px;overflow:hidden;text-decoration:none;display:block;transition:transform .2s,box-shadow .2s}
+.vid-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(15,14,12,.1)}
+.vid-thumb{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:var(--paper3)}
+.vid-info{padding:.9rem 1rem}
+.vid-title{font-size:.85rem;font-weight:500;color:var(--ink);line-height:1.45;margin-bottom:.25rem}
+.vid-meta{font-size:.73rem;color:var(--ink3)}
+.vid-channel-card .vid-thumb-inner{width:100%;aspect-ratio:16/9;background:var(--accent);display:flex;align-items:center;justify-content:center}
+.vid-channel-card .vid-thumb-inner span{color:#9bbfa9;font-size:.82rem;font-weight:300}
+
+.project{background:var(--accent);color:#e8f0eb}
+.project .section-label span{color:#9bbfa9}
+.project .section-label::after{background:rgba(255,255,255,.1)}
+.project .section-title{color:#e8f0eb}
+.project .section-title em{color:var(--gold-light)}
+.project-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.project-body p{font-size:.95rem;font-weight:300;color:#b8cfc0;line-height:1.85;margin-bottom:1rem}
+.project-body strong{color:#e8f0eb;font-weight:400}
+.tech-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin:1.25rem 0}
+.tech-tag{font-size:.73rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:4px;padding:.25rem .65rem;color:#c8dfd3}
+.feature-list{display:flex;flex-direction:column;gap:.85rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1.75rem}
+.feature-row{display:flex;align-items:flex-start;gap:.85rem}
+.feature-dot{width:7px;height:7px;border-radius:50%;background:var(--gold-light);margin-top:7px;flex-shrink:0}
+.feature-name{font-size:.87rem;font-weight:500;color:#e8f0eb}
+.feature-desc{font-size:.78rem;color:#8ab09a;margin-top:2px}
+
+.edu{background:var(--paper2)}
+.edu-card{background:var(--paper);border:1px solid var(--paper3);border-radius:12px;padding:2.25rem;display:flex;gap:2rem;align-items:flex-start;max-width:720px}
+.edu-badge{width:54px;height:54px;background:var(--accent);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--gold-light);flex-shrink:0}
+.edu-name{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;margin-bottom:.15rem}
+.edu-deg{font-size:.88rem;color:var(--gold);font-weight:500;margin-bottom:.2rem}
+.edu-yr{font-size:.75rem;color:var(--ink3);margin-bottom:.85rem}
+.course-tags{display:flex;flex-wrap:wrap;gap:.35rem}
+.ctag{font-size:.72rem;background:var(--paper2);border:1px solid var(--paper3);border-radius:4px;padding:.2rem .55rem;color:var(--ink3)}
+
+.contact{text-align:center}
+.contact-title{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:900;line-height:1.1;margin-bottom:1rem;max-width:700px;margin-left:auto;margin-right:auto}
+.contact-title em{font-style:italic;color:var(--gold)}
+.contact-sub{font-size:.95rem;font-weight:300;color:var(--ink3);margin-bottom:2.5rem}
+.contact-links{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+
+footer{background:var(--ink);color:var(--ink3);text-align:center;padding:1.4rem;font-size:.75rem;letter-spacing:.05em}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:none}
+
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  .hero{grid-template-columns:1fr;padding:5.5rem 1.5rem 2rem;min-height:auto;gap:2.5rem}
+  section{padding:4rem 1.5rem}
+  .about-grid,.project-grid{grid-template-columns:1fr;gap:2.5rem}
+  .work-item{grid-template-columns:1fr;gap:.5rem}
+  .videos-grid{grid-template-columns:1fr 1fr}
+  .edu-card{flex-direction:column;gap:1rem}
+}
+@media(max-width:560px){.videos-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Jacob Johnson</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#videos">Videos</a></li>
+    <li><a href="#project">Project</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="reveal">
+    <span class="hero-eyebrow">Finance · Analytics · Product</span>
+    <h1 class="hero-name">Jacob<br><em>Johnson</em></h1>
+    <p class="hero-sub">Finance graduate who builds things — from full-stack mobile apps to revenue-generating content engines. I combine analytical rigor with a rare ability to actually ship.</p>
+    <div class="hero-ctas">
+      <a href="#work" class="btn btn-primary">View my work</a>
+      <a href="#contact" class="btn btn-outline">Get in touch</a>
+    </div>
+  </div>
+  <div class="reveal" style="transition-delay:.15s">
+    <div class="stat-grid">
+      <div class="stat-card dark">
+        <div class="stat-number">300K+</div>
+        <div class="stat-label">Followers grown from zero</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">$50K+</div>
+        <div class="stat-label">Channel revenue generated</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">2M</div>
+        <div class="stat-label">Peak views on a single video</div>
+      </div>
+      <div class="stat-card dark">
+        <div class="stat-number">1</div>
+        <div class="stat-label">Full-stack app shipped solo</div>
+      </div>
+    </div>
+    <div class="hero-tagline">"I don't just analyze what's working — I build the thing, measure it, and make it grow."</div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="section-label"><span>About me</span></div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>I graduated from UCF with a <strong>BS in Finance</strong> and immediately put it to work in the real world — not in a spreadsheet, but scaling a YouTube channel from nothing to 300,000 followers while tracking every metric that moved the needle.</p>
+      <p>Along the way I taught myself iOS and Android development and <strong>shipped a full-stack social travel app</strong> across three platforms using Swift, Kotlin, JavaScript, and Firebase. That's the kind of thing that doesn't show up on a standard finance resume — and it's exactly what makes mine different.</p>
+      <p>I'm looking for a role where analytical thinking and a builder's mindset actually matter. Revenue modeling, data-driven strategy, product operations — I'm at home anywhere numbers meet execution.</p>
+    </div>
+    <div class="skills-list reveal" style="transition-delay:.1s">
+      <div>
+        <div class="skill-name">Financial Analysis &amp; Modeling</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+      </div>
+      <div>
+        <div class="skill-name">Revenue Strategy &amp; Analytics</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div>
+      </div>
+      <div>
+        <div class="skill-name">Content &amp; Audience Growth</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+      </div>
+      <div>
+        <div class="skill-name">Mobile &amp; Full-Stack Dev</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
+      </div>
+      <div>
+        <div class="skill-name">Swift / Kotlin / JavaScript</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:68%"></div></div>
+      </div>
+      <div>
+        <div class="skill-name">Data-Driven Decision Making</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work" style="background:var(--paper)">
+  <div class="section-label"><span>Experience</span></div>
+  <h2 class="section-title reveal">Where I've <em>made</em> things happen</h2>
+  <div>
+    <div class="work-item reveal">
+      <div>
+        <div class="work-company">Otto Kilcher</div>
+        <div class="work-period">Mar 2024 — Present</div>
+      </div>
+      <div>
+        <div class="work-role">Revenue Analyst &amp; Content Producer</div>
+        <p class="work-p">Sole operator of YouTube and Facebook growth strategy for Otto Kilcher — Alaskan homesteader and cast member of Discovery Channel's Alaska: The Last Frontier. Grew both platforms from zero to 300,000+ followers and generated over $50,000 in channel revenue through data-driven content strategy and production.</p>
+        <p class="work-p">Analyzed audience retention, engagement signals, and monetization metrics to inform every production decision. Built scalable workflows that increased output while operating independently with minimal resources.</p>
+        <div class="tags">
+          <span class="tag hi">$50K+ revenue</span>
+          <span class="tag hi">300K+ followers</span>
+          <span class="tag hi">2M peak views</span>
+          <span class="tag">Performance Analytics</span>
+          <span class="tag">YouTube SEO</span>
+          <span class="tag">Content Strategy</span>
+          <span class="tag">Monetization Modeling</span>
+          <span class="tag">Video Production</span>
+        </div>
+      </div>
+    </div>
+    <div class="work-item reveal">
+      <div>
+        <div class="work-company">TravelBroche</div>
+        <div class="work-period">Dec 2023 — Present</div>
+      </div>
+      <div>
+        <div class="work-role">Founder &amp; Full-Stack Developer</div>
+        <p class="work-p">Independently designed and built a full-stack social travel mobile application — from concept to deployed product. Built for iOS (Swift/Xcode) and Android (Kotlin), with a web interface in JavaScript and a complete Firebase backend including real-time database and user authentication.</p>
+        <p class="work-p">Managed the complete product lifecycle: UX decisions, architecture, technical implementation, and iteration. Demonstrates the ability to self-direct, learn new skills fast, and ship.</p>
+        <div class="tags">
+          <span class="tag hi">Shipped solo</span>
+          <span class="tag">Swift / Xcode</span>
+          <span class="tag">Kotlin</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Firebase</span>
+          <span class="tag">Real-time DB</span>
+          <span class="tag">User Auth</span>
+          <span class="tag">iOS &amp; Android</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="videos" id="videos">
+  <div class="section-label"><span>Selected work</span></div>
+  <h2 class="section-title reveal">Videos I produced for <em>Otto Kilcher</em></h2>
+  <div class="videos-grid">
+
+    <a class="vid-card reveal" href="https://www.youtube.com/watch?v=Kh0I74J1UZY" target="_blank" rel="noopener">
+      <img class="vid-thumb" src="https://img.youtube.com/vi/Kh0I74J1UZY/mqdefault.jpg" alt="From Bull to Beef">
+      <div class="vid-info">
+        <div class="vid-title">From Bull to Beef</div>
+        <div class="vid-meta">Otto Kilcher · Top performer</div>
+      </div>
+    </a>
+
+    <a class="vid-card reveal" style="transition-delay:.05s" href="https://www.youtube.com/watch?v=o2W4ZkXv4mM" target="_blank" rel="noopener">
+      <img class="vid-thumb" src="https://img.youtube.com/vi/o2W4ZkXv4mM/mqdefault.jpg" alt="Mayhem on an Alaskan Farm">
+      <div class="vid-info">
+        <div class="vid-title">Mayhem on an Alaskan Farm</div>
+        <div class="vid-meta">Otto Kilcher · High engagement</div>
+      </div>
+    </a>
+
+    <a class="vid-card reveal" style="transition-delay:.1s" href="https://www.youtube.com/watch?v=hi3X2jyHOIU" target="_blank" rel="noopener">
+      <img class="vid-thumb" src="https://img.youtube.com/vi/hi3X2jyHOIU/mqdefault.jpg" alt="Hoof to Steak">
+      <div class="vid-info">
+        <div class="vid-title">Hoof to Steak</div>
+        <div class="vid-meta">Otto Kilcher · Best production</div>
+      </div>
+    </a>
+
+    <a class="vid-card reveal" style="transition-delay:.05s" href="https://www.youtube.com/watch?v=moM6oL2BRVo" target="_blank" rel="noopener">
+      <img class="vid-thumb" src="https://img.youtube.com/vi/moM6oL2BRVo/mqdefault.jpg" alt="Helicopter Lifts Cabin">
+      <div class="vid-info">
+        <div class="vid-title">Helicopter Lifts Cabin</div>
+        <div class="vid-meta">Otto Kilcher · Viral moment</div>
+      </div>
+    </a>
+
+    <a class="vid-card reveal" style="transition-delay:.1s" href="https://www.youtube.com/watch?v=RoX8tHGzBEo" target="_blank" rel="noopener">
+      <img class="vid-thumb" src="https://img.youtube.com/vi/RoX8tHGzBEo/mqdefault.jpg" alt="Alaska's Remote Luxury Lodge">
+      <div class="vid-info">
+        <div class="vid-title">Alaska's Remote Luxury Lodge</div>
+        <div class="vid-meta">Otto Kilcher · Flagship production</div>
+      </div>
+    </a>
+
+    <a class="vid-card vid-channel-card reveal" style="transition-delay:.15s" href="https://www.youtube.com/@otto_kilcher" target="_blank" rel="noopener">
+      <div class="vid-thumb-inner"><span>View full channel ↗</span></div>
+      <div class="vid-info">
+        <div class="vid-title">Otto Kilcher — Full Channel</div>
+        <div class="vid-meta">300K+ subscribers · All videos</div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<section class="project" id="project">
+  <div class="section-label"><span>Featured project</span></div>
+  <h2 class="section-title reveal">TravelBroche — <em>built</em> from the ground up</h2>
+  <div class="project-grid">
+    <div class="project-body reveal">
+      <p>A <strong>full-stack social travel application</strong> with real user profiles, social mapping, and content discovery — built and deployed independently across iOS, Android, and web. No team, no prior mobile experience when I started.</p>
+      <p>The project shows more than technical skill: it proves I can identify a problem, design a solution, and follow through to a working product. That's rare for a finance grad.</p>
+      <div class="tech-tags">
+        <span class="tech-tag">Swift</span>
+        <span class="tech-tag">Xcode</span>
+        <span class="tech-tag">Kotlin</span>
+        <span class="tech-tag">JavaScript</span>
+        <span class="tech-tag">Firebase</span>
+        <span class="tech-tag">Real-time DB</span>
+        <span class="tech-tag">Auth</span>
+        <span class="tech-tag">iOS &amp; Android</span>
+      </div>
+      <a href="http://www.travelbroche.com" target="_blank" class="btn" style="background:rgba(255,255,255,.1);color:#e8f0eb;border:1px solid rgba(255,255,255,.25)">View project ↗</a>
+    </div>
+    <div class="feature-list reveal" style="transition-delay:.1s">
+      <div class="feature-row">
+        <div class="feature-dot"></div>
+        <div>
+          <div class="feature-name">Social travel map</div>
+          <div class="feature-desc">Discover destinations through other users' experiences</div>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-dot"></div>
+        <div>
+          <div class="feature-name">Full user auth system</div>
+          <div class="feature-desc">Sign up, profiles, session management via Firebase</div>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-dot"></div>
+        <div>
+          <div class="feature-name">Real-time database</div>
+          <div class="feature-desc">Live feed and content synced across platforms</div>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-dot"></div>
+        <div>
+          <div class="feature-name">iOS + Android + Web</div>
+          <div class="feature-desc">Built natively across three platforms independently</div>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-dot"></div>
+        <div>
+          <div class="feature-name">Full product ownership</div>
+          <div class="feature-desc">UX, architecture, and implementation — all solo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="edu" id="education">
+  <div class="section-label"><span>Education</span></div>
+  <div class="edu-card reveal">
+    <div class="edu-badge">UCF</div>
+    <div>
+      <div class="edu-name">University of Central Florida</div>
+      <div class="edu-deg">Bachelor of Science in Finance</div>
+      <div class="edu-yr">August 2021 — May 2025 · Orlando, FL</div>
+      <div class="course-tags">
+        <span class="ctag">Financial Modeling</span>
+        <span class="ctag">Investments</span>
+        <span class="ctag">Corporate Finance</span>
+        <span class="ctag">Economics</span>
+        <span class="ctag">Data Analysis</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <h2 class="contact-title reveal">Let's work<br><em>together</em></h2>
+  <p class="contact-sub reveal">Open to full-time roles in finance, analytics, operations, or product. Tampa, FL — open to remote.</p>
+  <div class="contact-links reveal">
+    <a href="mailto:jacobljohnsonusa@gmail.com" class="btn btn-primary">jacobljohnsonusa@gmail.com</a>
+    <a href="tel:8135394577" class="btn btn-outline">(813) 539-4577</a>
+  </div>
+</section>
+
+<footer>&copy; 2026 Jacob Johnson &middot; Tampa, FL</footer>
+
+<script>
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
